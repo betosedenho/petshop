@@ -9,13 +9,17 @@ import org.springframework.stereotype.Component;
 
 import com.roberto.petshop.domain.Categoria;
 import com.roberto.petshop.domain.Cidade;
+import com.roberto.petshop.domain.Cliente;
+import com.roberto.petshop.domain.Endereco;
 import com.roberto.petshop.domain.Especie;
 import com.roberto.petshop.domain.Estado;
+import com.roberto.petshop.domain.Funcionario;
 import com.roberto.petshop.domain.Pet;
 import com.roberto.petshop.domain.Produto;
 import com.roberto.petshop.domain.Raca;
 import com.roberto.petshop.repositories.CategoriaRepository;
 import com.roberto.petshop.repositories.CidadeRepository;
+import com.roberto.petshop.repositories.EnderecoRepository;
 import com.roberto.petshop.repositories.EspecieRepository;
 import com.roberto.petshop.repositories.EstadoRepository;
 import com.roberto.petshop.repositories.PessoaRepository;
@@ -48,10 +52,10 @@ public class PopulaDados {
 	CidadeRepository cidadeRepository;
 	
 	@Autowired
-	PessoaRepository pessoaRepository
+	PessoaRepository pessoaRepository;
 	
 	@Autowired
-	Enderec
+	EnderecoRepository enderecoRepository;
 	
 	@PostConstruct
 	public void cadastrar() {
@@ -104,6 +108,19 @@ public class PopulaDados {
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente clt1 = new Cliente(null, "Jose Maria", "jose@mail.com", "335.119.320-21", "FISICA");
+		clt1.getTelefones().addAll(Arrays.asList("3516-2000", "9191-0000"));
+		
+		Funcionario fnc1 = new Funcionario(null, "Maria Jose", "maria@mail.com", "335.119.320-21", "Atendente");
+		fnc1.getTelefones().addAll(Arrays.asList("3516-0001", "9090-0001"));
+		
+		Endereco end1 = new Endereco(null, "Rua Tupis", "500", "Apto 101", "Pindorama", "30111222", clt1, c1);
+		Endereco end2 = new Endereco(null, "Av Tamoios", "100", "Casa", "Oca", "36911222", fnc1, c2);
+		Endereco end3 = new Endereco(null, "Rua Aranas", "10", "Apto 201", "Centro", "01153000", fnc1, c3);
+		
+		pessoaRepository.saveAll(Arrays.asList(clt1, fnc1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));
 	}
 
 }
