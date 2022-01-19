@@ -18,6 +18,7 @@ import com.roberto.petshop.repositories.CategoriaRepository;
 import com.roberto.petshop.repositories.CidadeRepository;
 import com.roberto.petshop.repositories.EspecieRepository;
 import com.roberto.petshop.repositories.EstadoRepository;
+import com.roberto.petshop.repositories.PessoaRepository;
 import com.roberto.petshop.repositories.PetRepository;
 import com.roberto.petshop.repositories.ProdutoRepository;
 import com.roberto.petshop.repositories.RacaRepository;
@@ -45,6 +46,12 @@ public class PopulaDados {
 	
 	@Autowired
 	CidadeRepository cidadeRepository;
+	
+	@Autowired
+	PessoaRepository pessoaRepository
+	
+	@Autowired
+	Enderec
 	
 	@PostConstruct
 	public void cadastrar() {
