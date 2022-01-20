@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.roberto.petshop.domain.enuns.SituacaoPagamento;
 
 @Entity
@@ -24,6 +25,7 @@ public abstract class Pagamento implements Serializable {
 	private Double valor;
 	private  Integer situacao;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "id_servico")
 	@MapsId
